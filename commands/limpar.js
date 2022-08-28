@@ -21,9 +21,6 @@ module.exports = {
 			interaction.reply(
 				{ content: 'O chat teve ' + messages.size + " mensagens deletadas.", ephemeral: true }
 			)
-			setTimeout(() => {
-				interaction.deleteReply()
-			}, 3000)
 		})
 	},
 };

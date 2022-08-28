@@ -2,11 +2,9 @@ require('dotenv').config();
 const fs = require('node:fs');
 const path = require('node:path');
 const { REST } = require('@discordjs/rest');
-const { Client, Collection, GatewayIntentBits, Routes } = require('discord.js');
+const { Client, Collection, GatewayIntentBits, ApplicationCommandType } = require('discord.js');
 const rest = new REST({ version: '10' }).setToken(process.env.CLIENT_TOKEN);
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
-
-registerCommands();
 
 const swapActivityTime = 10000;
 let currentActivity = 0;
@@ -14,6 +12,7 @@ let currentActivity = 0;
 client.once('ready', () => {
     console.log('Bot inicializado!');
     swapStatus();
+    registerCommands();
 });
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isChatInputCommand()) return;
@@ -53,13 +52,13 @@ function registerCommands(){
     for (const file of commandFiles) {
         const filePath = path.join(commandsPath, file);
         const command = require(filePath);
+
+        command.data.type = ApplicationCommandType.ChatInput
         client.commands.set(command.data.name, command);
         commands.push(command.data.toJSON());
     }
 
-    rest.put(
-        Routes.applicationCommands(process.env.CLIENT_ID),{ body: commands }
-    );
+    client.application.commands.set(commands)
 }
 
 function getUpTime(){
