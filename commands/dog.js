@@ -9,13 +9,13 @@ module.exports = {
 
 		let res;
 		try {
-			res = await get("https://random.dog/woof");
-			const dog = res.raw.toString();
-			
+			res = await get("https://dog.ceo/api/breeds/image/random");
+			const dog = res.body.message;
+
 			const embed = new EmbedBuilder()
 			.setColor(0x0099FF)
 			.setTitle('Woof! 🐶')
-			.setImage("https://random.dog/" + dog)
+			.setImage(dog)
 
 			await interaction.reply({ embeds: [ embed ] });
 		} catch (err) {

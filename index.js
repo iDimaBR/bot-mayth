@@ -75,7 +75,7 @@ function getUpTime(){
 	let minutes = Math.floor(totalSeconds / 60);
     if(minutes > 0) uptime.push(minutes + "m");
 	let seconds = Math.floor(totalSeconds % 60);
-    uptime.push(seconds + "s");
+    if(seconds > 0) uptime.push(seconds + "s");
 
     return uptime.join(" ");
 }
