@@ -1,6 +1,4 @@
 const { SlashCommandBuilder, EmbedBuilder, PermissionFlagsBits } = require('discord.js');
-const { options } = require('snekfetch');
-
 
 module.exports = {
 	data: new SlashCommandBuilder()

@@ -1,9 +1,9 @@
-const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
-
+const { SlashCommandBuilder, EmbedBuilder, PermissionFlagsBits } = require('discord.js');
 
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('limpar')
+		.setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
 		.addIntegerOption((option) => option.setName('quantidade').setDescription('Quantidade para limpar').setRequired(true))
 		.setDescription('Limpa mensagens do chat'),
 	async execute(client, interaction) {
