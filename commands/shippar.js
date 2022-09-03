@@ -11,7 +11,7 @@ module.exports = {
 		var target = interaction.options.get("shippe").user.username;
 		const shipName = `${author.substring(0, 4)}${target.slice(-4)}`.toLowerCase();
 		
-		await interaction.reply({ content: "Chegou **" + capitalize(shipName) + "**, o canal mais quente do ano para abalar o servidor! Parabéns " + author + " por conquistar " + target + " ;)" });
+		await interaction.reply({ content: "Chegou **" + capitalize(shipName) + "**, o casal mais quente do ano para abalar o servidor! Parabéns " + author + " por conquistar " + target + " ;)" });
 	},
 };
 

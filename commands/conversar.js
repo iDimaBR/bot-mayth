@@ -10,13 +10,15 @@ module.exports = {
 		var text = interaction.options.get("conversar").value;
 		var textEncoded = encodeURIComponent(text).replace('%20','+');
 
+		await interaction.reply({ content: text + "\n**Resposta:** *pensando...*"});
+
 		try {
 			res = await get("https://api.simsimi.net/v2/?text=" + textEncoded + "&lc=pt");
 			const answer = res.body.success;
 
-			await interaction.reply({ content: text + "\n**Resposta:** " + answer });
+			await interaction.editReply({ content: text + "\n**Resposta:** " + answer.replace("_","#@$").replace("_","")});
 		} catch (err) {
-			await interaction.reply({ content: text + "\n**Resposta:** Não entendi meu lindo"});
+			await interaction.editReply({ content: text + "\n**Resposta:** Não entendi meu lindo"});
 		}
 	},
 };
