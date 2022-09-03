@@ -12,3 +12,7 @@ node_modules
 
 # Ignore arquivos de configuração de SASS
 .sass-cache
+
+# Ignore arquivos de database
+.sqlite
+.sql
